@@ -1,17 +1,49 @@
 {% load static %}
+
 <html>
-  <head>
+<head>
     <title>Django blog</title>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <h1><a href="{% url 'home' %}">Django blog</a></h1>
-    </header>
-    <div>
-      {% block content %}
-      {% endblock content %}
+  
+</head>
+<body>
+
+    <div id="app">
+        <nav>
+        <transition name="fade" mode="out-in">
+            <i class="material-icons menu" v-if="!show" @click="show = !show" key="menu">menu</i>
+            <i class="material-icons clear" v-else @click="show = !show" key="clear">clear</i>
+        </transition>
+        <transition name="fade">
+            <ul v-if="show">
+                <li v-for="item in items"></li>
+            </ul>
+        </transition>
+            </nav>
+            </div>
+
+
+    <div class="timer">
+        <div class="timer__items">
+            <div class="timer__item timer__days">00</div>
+            <div class="timer__item timer__hours">00</div>
+            <div class="timer__item timer__minutes">00</div>
+            <div class="timer__item timer__seconds">00</div>
+        </div>
     </div>
-  </body>
+
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <script type="text/javascript" src={% static "js/script.js" %}></script>
+    <script type="text/javascript" src={% static "js/vue.js" %}></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</body>
+
+
+<footer>
+    <p>That's is test project, upgrade must be soon...</p>
+</footer>
 </html>
